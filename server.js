@@ -1,15 +1,28 @@
+// Importar el módulo Express
 import express from "express";
 
-// Ruta de prueba
-import router from "./routes/testRoutes";
+// Importar la ruta de prueba
+import router from "./routes/testRoutes.js";
 
-// Puerto
+// Configurar el puerto del servidor
 const PORT = 8080;
 
-// Iniciar el servidor
+// Crear una nueva instancia de Express
 const app = express();
+
+// Configurar la ruta de prueba
 app.use("/api/v1/test", router);
 
-app.listen(PORT, () => {
-  console.log("Node Server Running");
+// Agregar un manejador de errores
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Algo salió mal.");
 });
+
+// Iniciar el servidor
+app.listen(PORT, () => {
+  console.log(`Node Server Running on port ${PORT}`);
+});
+
+// Agregar un nombre al módulo para facilitar su depuración
+export default app;

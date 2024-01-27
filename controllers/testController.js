@@ -3,7 +3,7 @@ const testController = (req, res) => {
       message: "Welcome user",
       success: true,
     });
-  };
+  }
   
   module.exports = { testController };
   
